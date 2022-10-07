@@ -39,6 +39,7 @@ namespace SeleniumTests
         [TestCase("20", "-", "3", "Result: 17")]
         [TestCase("84", "*", "2", "Result: 168")]
         [TestCase("81", "/", "9", "Result: 9")]
+        [TestCase("12", "+", "12", "Result: 24")]
 
         //invalid tests with integer numbers
         [TestCase("5", "+", "", "Result: invalid input")]
@@ -62,7 +63,7 @@ namespace SeleniumTests
 
         public void TestCalclucatorWebApp(string num1, string op, string num2, string expectedResult)
         {
-            //arrange
+            //arrange                
             buttonReset.Click();
             if (num1 != "")
                 textboxNum1.SendKeys(num1);
@@ -77,11 +78,8 @@ namespace SeleniumTests
 
             //assert
             var actualresult = result.Text;
-            Assert.AreEqual(expectedResult, actualresult);
+            Assert.That(actualresult, Is.EqualTo(expectedResult));
         }
-
-
-
 
 
 
